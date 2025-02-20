@@ -1,0 +1,74 @@
+1. Enter the number of hours it took you to complete the project between
+   the <<< and >>> signs below (eg, <<<10>>>).
+
+   <<<8>>>
+   
+2. Enter the difficulty level (1: very easy; 5: very difficult) of the project
+   between the <<< and >>> signs below (eg, <<<3>>>).
+
+   <<<5>>>
+
+3. Did you receive help from anyone? List their names, status (classmate, 
+   CS110 grad, TA, other), and the nature of help received.
+
+   Name               Status       Help Received
+   ----               ------       -------------
+  MuhammadMoiz Amjad  Si Leader    Arithmetic and row, col correction
+
+
+4. Provide a short description of how you approached each problem, issues you 
+   encountered, and how you resolved those issues.
+
+   Problem 1 (Particle Representation)
+      Approach: In the add(self, x, y) function, I use the idea of running average
+      to update the center of mass of blob from the instance variables in def__init__(self).
+      For the mass(self) function, I return the number of pixels in the blob. For the
+      distanceTo(self, other), I return the Euclidean distance between the center of mass
+      of blob and the center of mass of another blob.
+
+      Issues and resolution: One issue I found is the output is not right. The output should be all
+      zeros when I input the values from the example in Problem 1. Si leader, discover that there
+      is something wrong in the add(self, x, y) function. The arithmetic operation in the numerator of self._x
+      and self._y should be multiplication instead of addition.
+
+   Problem 2 (Particle Identification)
+      Approach: In BlobFinder(), I first set self._blobs to an empty list. Then I use the variable marked
+      to create a 2D list of booleans that has the same dimensions as pic. Next I use nested for loops to
+      enumerate the pixels of pic, and for each pixel (i, j). In the loops, I create a Blob object called blob,
+      then call _findBlob() with the appropriate arguments, and add blob to blobs if it has non-zero mass.
+      In def getBeads(self, pixels), I return a list of blobs from blobs that has a mass >= pixels using an empty list
+      and a for loop to append element in blobs that has a mass >= pixels. For def _findBlob(), I first use an if-else
+      statement to return if pixel (i,j) is out of bounds, or if it is marked, or if its luminance is less than tau.
+      Next step is to mark the pixel (i, j) and add the pixel (i, j) to blob. Lastly, I recursively call
+      self._findBlob() on the N, E, W, S pixels.
+
+      Issues and resolution: I only got an output of 1 beads and 1 blob instead of numbers of beads and blobs. Si leader
+      found out that the column and rows are flipped in the nested for loops, if-else statements, and the recursive
+      call lines.
+
+   Problem 3 (Particle Tracking)
+      Approach: First I use the variables pixels(int), tau (float), and delta (float) to accept 3 command-line
+      arguments. Then I construct a BlobFinder object for the 4th command-line argument to get a list of beads that have
+      least x pixels. Then I use a for loop to loop through each frame starting at sys.argv[5]. In the for loop, it will
+      construct a BlobFinder object to get a list of beads (currBeads variable) that have at least x pixels. Then for
+      each currBead in currBeads, it will find a bead (prevBead) from prevBeads that is no further than delta and is
+      closest to currBead through an if-statement. After that I use stdio.writeln() to write a newline character and set
+      prevBeads to currBeads.
+
+      Issues and resolution: None
+
+   Problem 4 (Data Analysis)
+      Approach: First I initialize ETA, RHO, T, and R to the appropriate values mentioned in problem 4. Then I set
+      variable var as the sum of the squares of the n displacement (each converted from pixels to meters) read from
+      standard input. Next I divided the var by 2 * n and use the result as one of the component to construct the
+      estimation of Boltzmann's constant. Then I use the Boltzmann's constant as one of the components to estimate
+      the Avogadro's constant. Lastly, I use stdio.writef() to write standard output the two constants in scientific
+      notation separated by a space.
+
+      Issues and resolution: None
+
+5. List any other comments here. Feel free to provide any feedback on how
+   much you learned from doing the assignment, and whether you enjoyed
+   doing it.
+
+   ...
